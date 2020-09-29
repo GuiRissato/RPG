@@ -11,9 +11,9 @@ package trabalho2;
  */
 public class classHeroi {
     String nome;
-    int vida;
+    Double vida;
     
-    public classHeroi(String nome, int vida){
+    public classHeroi(String nome, Double vida){
         this.nome = nome;
         this.vida = vida;
     }

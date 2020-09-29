@@ -9,16 +9,16 @@ package trabalho2;
  *
  * @author Guilherme Rissato
  */
-public class frmMenu extends javax.swing.JFrame {
-   public frmConfig config;
-   
+public class frmConfig extends javax.swing.JFrame {
+public frmHeroi heroi;
+public frmNivel nivel;
     /**
-     * Creates new form frmMenu
+     * Creates new form frmConfig
      */
-    public frmMenu() {
-        this.config = new frmConfig();
-        Trabalho2.inic.inicializador();
+    public frmConfig() {
+        this.heroi = new frmHeroi();
         initComponents();
+        setDefaultCloseOperation(frmMenu.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -30,23 +30,22 @@ public class frmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnIniciar = new javax.swing.JButton();
-        btnConfig = new javax.swing.JButton();
+        btnHeroi = new javax.swing.JButton();
+        btnMapa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnIniciar.setText("Jogar");
-        btnIniciar.setEnabled(false);
-        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+        btnHeroi.setText("Herói");
+        btnHeroi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarActionPerformed(evt);
+                btnHeroiActionPerformed(evt);
             }
         });
 
-        btnConfig.setText("configuração");
-        btnConfig.addActionListener(new java.awt.event.ActionListener() {
+        btnMapa.setText("Mapa");
+        btnMapa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfigActionPerformed(evt);
+                btnMapaActionPerformed(evt);
             }
         });
 
@@ -55,40 +54,41 @@ public class frmMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(144, 144, 144)
+                .addGap(158, 158, 158)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(151, Short.MAX_VALUE))
+                    .addComponent(btnMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHeroi, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(88, 88, 88)
+                .addComponent(btnHeroi)
+                .addGap(38, 38, 38)
+                .addComponent(btnMapa)
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+    private void btnHeroiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeroiActionPerformed
         // TODO add your handling code here:
-            
-    }//GEN-LAST:event_btnIniciarActionPerformed
+        heroi.setVisible(true);
+        btnHeroi.setEnabled(false);
+    }//GEN-LAST:event_btnHeroiActionPerformed
 
-    private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
+    private void btnMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapaActionPerformed
         // TODO add your handling code here:
-        config.setVisible(true);
-        btnIniciar.setEnabled(true);
-    }//GEN-LAST:event_btnConfigActionPerformed
+        nivel.setVisible(true);
+        btnMapa.setEnabled(false);
+    }//GEN-LAST:event_btnMapaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public  void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -102,24 +102,24 @@ public class frmMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConfig.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConfig.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConfig.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConfig.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new frmMenu().setVisible(true);
+            new frmConfig().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfig;
-    private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnHeroi;
+    private javax.swing.JButton btnMapa;
     // End of variables declaration//GEN-END:variables
 }

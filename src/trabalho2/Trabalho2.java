@@ -25,17 +25,21 @@ public class Trabalho2 {
      int codInimigo = 0;
      int codPocoes = 0;
      int codArmas = 0;
-     //inicializador das variaveis e do projeto
-
+     int nivel = 0;
+     int tamMapa = 0;
+     
+     
     /**
      *
      * @param args
      */
-    public static void main(String[] args){
+//inicializador das variaveis e do projeto
+       public static void main(String[] args){
         frmMenu menu = new frmMenu();
         menu.setVisible(true);
-    }
-    
+        
+    } 
+    //inicializador das variaveis e do projeto
     public void inicializador(){
     this.mochila = new Stack<>();
     this.vetHeroi = new ArrayList<>();
@@ -43,6 +47,11 @@ public class Trabalho2 {
     this.vetArmas = new ArrayList<>();
     this.vetPocoes = new ArrayList<>();
     this.cintoHeroi = new int[4];
+    setPocao("elixir vitae", 1.3, 2);
+    setPocao("forca",1.2,3);
+    setPocao("defesa",1.1,1);
+    
+    
     }
 //    coloca items na mochila
     public void pushMochila(int cod){
@@ -54,38 +63,74 @@ public class Trabalho2 {
         mochila.pop();
         
     }
-    
     private void printStack(Stack<Integer> s){
-//        if (s.isEmpty()){
-//            System.out.println("you have nothing on your stack");
-//        }else{
-//         System.out.printf("%s TOP\n", s);
-//        }
-    
+        if (s.isEmpty()){
+            System.out.println("you have nothing on your stack");
+        }else{
+         System.out.printf("%s TOP\n", s);
+        } 
 }
-    public void setHeroi(String nome, int vida){
+    public void setHeroi(String nome, Double vida){
         vetHeroi.add(new classHeroi(nome,vida));
     }
-    
     public void setCinto(int objeto,int posicao){
         cintoHeroi[posicao] = objeto;
 //        fazer verificacao qnd estiver cheio
     }
-    
-    public void setInimigo(String nome, int ataque, int vida){
+    public void setInimigo(String nome, int ataque, double multi){
         int cod = codInimigo;
+        Double vida = vetHeroi.get(0).vida*multi;
         vetInimigo.add(new classInimigos(cod,nome,ataque,vida));
         codInimigo++;
     }
-     public void setArma(String nome, int ataque, int peso){
+    public void setArma(String nome, int ataque, int peso){
          int cod = codArmas;
         vetArmas.add(new classArmas(cod,nome,ataque,peso));
         codArmas++;
     }
-      public void setPocao(String nome, int cura, int peso){
+    public void setPocao(String nome, double cura, int peso){
         int cod = codPocoes;
         vetPocoes.add(new classPocoes(cod,nome,cura,peso));
         codPocoes++;
     }
+    public int numAleatorioIntevalo(int max,int min){
+    int num;
+    Random aleatorio = new Random();
+    num = aleatorio.nextInt((max - min) + 1)+ min;
+        
+        return num;
+    }
     
+    public void mapa(){
+          int tipo =  numAleatorioIntevalo(3,1);
+          fases(tipo);
+    }
+    public void nivel(int i){
+      nivel = i;
+      tamMapa = 5;
+      
+    }
+    
+    public void fases(int i){
+         switch (i) {
+             case 1:
+                 faseInimigo();
+                 break;
+             case 2:
+                 faseVazio();
+                 break;
+             case 3:
+                 faseElemento();
+                 break;
+         }
+    }
+   public void faseInimigo(){
+   
+   }
+   public void faseVazio(){
+   
+   }
+   public void faseElemento(){
+   
+   }
 }

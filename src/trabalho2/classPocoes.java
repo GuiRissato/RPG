@@ -12,10 +12,10 @@ package trabalho2;
 public class classPocoes {
     int cod;
     String nome;
-    int cura;
+    Double cura;
     int peso;
     
-    public classPocoes(int cod,String nome, int cura, int peso){
+    public classPocoes(int cod,String nome, Double cura, int peso){
         this.cod = cod;
         this.nome = nome;
         this.cura = cura;

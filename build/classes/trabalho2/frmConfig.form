@@ -24,43 +24,42 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnConfig" max="32767" attributes="0"/>
-                  <Component id="btnIniciar" max="32767" attributes="0"/>
+                  <Component id="btnMapa" max="32767" attributes="0"/>
+                  <Component id="btnHeroi" min="-2" pref="85" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="151" max="32767" attributes="0"/>
+              <EmptySpace pref="157" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              <Component id="btnIniciar" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Component id="btnConfig" min="-2" pref="43" max="-2" attributes="0"/>
-              <EmptySpace pref="119" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+              <Component id="btnHeroi" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Component id="btnMapa" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="106" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnIniciar">
+    <Component class="javax.swing.JButton" name="btnHeroi">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Jogar"/>
-        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="Her&#xf3;i"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIniciarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHeroiActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnConfig">
+    <Component class="javax.swing.JButton" name="btnMapa">
       <Properties>
-        <Property name="text" type="java.lang.String" value="configura&#xe7;&#xe3;o"/>
+        <Property name="text" type="java.lang.String" value="Mapa"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfigActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMapaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

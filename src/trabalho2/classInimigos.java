@@ -13,9 +13,9 @@ public class classInimigos {
     int cod;
     String nome;
     int ataque;
-    int vida;
+    Double vida;
     
-    public classInimigos(int cod,String nome, int ataque, int vida){
+    public classInimigos(int cod,String nome, int ataque, Double vida){
     this.cod = cod;
     this.nome = nome;
     this.ataque = ataque;
