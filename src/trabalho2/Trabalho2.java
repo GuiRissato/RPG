@@ -29,6 +29,7 @@ public class Trabalho2 {
      int tamMapa = 0;
      
      
+     
     /**
      *
      * @param args
@@ -102,8 +103,10 @@ public class Trabalho2 {
     }
     
     public void mapa(){
+        for(int i = 0; i < nivel;i++){
           int tipo =  numAleatorioIntevalo(3,1);
           fases(tipo);
+        }
     }
     public void nivel(int i){
       nivel = i;
@@ -124,13 +127,27 @@ public class Trabalho2 {
                  break;
          }
     }
-   public void faseInimigo(){
-   
+   public String[] faseInimigo(){
+      int i =  numAleatorioIntevalo(4,0);
+      String vetInfo[] = new String[3]; 
+      vetInfo[0] = vetInimigo.get(i).nome;
+      vetInfo[1] = String.valueOf(vetInimigo.get(i).vida);
+      vetInfo[2] = String.valueOf(vetInimigo.get(i).ataque);
+      return vetInfo;
    }
    public void faseVazio(){
-   
+      
    }
-   public void faseElemento(){
-   
+   public String[] faseElemento(){
+      int i = numAleatorioIntevalo(3,0);
+      String vetInfo[] = new String[6];
+      vetInfo[0] = vetArmas.get(i).nome;
+      vetInfo[1] = String.valueOf(vetArmas.get(i).ataque);
+      vetInfo[2] = String.valueOf(vetArmas.get(i).peso);
+      i = numAleatorioIntevalo(2,0);
+      vetInfo[3] = vetPocoes.get(i).nome;
+      vetInfo[4] = String.valueOf(vetPocoes.get(i).cura);
+      vetInfo[5] = String.valueOf(vetPocoes.get(i).peso);
+      return vetInfo;     
    }
 }
