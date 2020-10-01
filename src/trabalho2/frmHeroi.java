@@ -78,6 +78,12 @@ public class frmHeroi extends javax.swing.JFrame {
 //        System.out.println(vida);
 //        System.out.println(txtNome.getText());
         Trabalho2.inic.setHeroi(txtNome.getText(), vida);
+//        criacao dos inimigos de acordo com a vida do personagem criado
+        Trabalho2.inic.setInimigo("esqueleto", (Trabalho2.inic.vetHeroi.get(0).vida)*0.8 , vida*0.8);
+        Trabalho2.inic.setInimigo("tigre", (Trabalho2.inic.vetHeroi.get(0).vida)*0.9 , vida*0.9);
+        Trabalho2.inic.setInimigo("morcego", (Trabalho2.inic.vetHeroi.get(0).vida)*0.7 , vida*0.7);
+        Trabalho2.inic.setInimigo("minhocas gigantes", (Trabalho2.inic.vetHeroi.get(0).vida)*0.85 , vida*0.85);
+        Trabalho2.inic.setInimigo("cavalo de fogo", (Trabalho2.inic.vetHeroi.get(0).vida)*0.8 , vida*0.8);
         txtNome.setText("");
         btnCadastrar.setEnabled(false);
         

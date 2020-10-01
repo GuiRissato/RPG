@@ -12,10 +12,10 @@ package trabalho2;
 public class classInimigos {
     int cod;
     String nome;
-    int ataque;
+    Double ataque;
     Double vida;
     
-    public classInimigos(int cod,String nome, int ataque, Double vida){
+    public classInimigos(int cod,String nome, Double ataque, Double vida){
     this.cod = cod;
     this.nome = nome;
     this.ataque = ataque;

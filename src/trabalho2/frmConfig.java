@@ -17,6 +17,7 @@ public frmNivel nivel;
      */
     public frmConfig() {
         this.heroi = new frmHeroi();
+        this.nivel = new frmNivel();
         initComponents();
         setDefaultCloseOperation(frmMenu.DISPOSE_ON_CLOSE);
     }

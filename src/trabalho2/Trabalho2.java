@@ -49,9 +49,11 @@ public class Trabalho2 {
     this.cintoHeroi = new int[4];
     setPocao("elixir vitae", 1.3, 2);
     setPocao("forca",1.2,3);
-    setPocao("defesa",1.1,1);
-    
-    
+    setPocao("defesa",0.8,1);
+    setArma("espada longa",17,3);
+    setArma("adaga",13,1);
+    setArma("besta",14,2);
+    setArma("clave",20,2);
     }
 //    coloca items na mochila
     public void pushMochila(int cod){
@@ -65,10 +67,8 @@ public class Trabalho2 {
     }
     private void printStack(Stack<Integer> s){
         if (s.isEmpty()){
-            System.out.println("you have nothing on your stack");
-        }else{
-         System.out.printf("%s TOP\n", s);
-        } 
+            System.out.println("nao existe elementos na mochila");
+        }
 }
     public void setHeroi(String nome, Double vida){
         vetHeroi.add(new classHeroi(nome,vida));
@@ -77,7 +77,7 @@ public class Trabalho2 {
         cintoHeroi[posicao] = objeto;
 //        fazer verificacao qnd estiver cheio
     }
-    public void setInimigo(String nome, int ataque, double multi){
+    public void setInimigo(String nome, Double ataque, Double multi){
         int cod = codInimigo;
         Double vida = vetHeroi.get(0).vida*multi;
         vetInimigo.add(new classInimigos(cod,nome,ataque,vida));
