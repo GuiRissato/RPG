@@ -85,6 +85,7 @@ public class frmNivel extends javax.swing.JFrame {
         Trabalho2.inic.nivel = Integer.valueOf(txtNivel.getText());
         txtNivel.setText("");
         txtNivel.setEnabled(false);
+        btnConfirmar.setEnabled(false);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void txtNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNivelActionPerformed

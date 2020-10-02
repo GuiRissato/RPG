@@ -11,12 +11,14 @@ package trabalho2;
  */
 public class frmMenu extends javax.swing.JFrame {
    public frmConfig config;
+   public frmMapa mapa;
    
     /**
      * Creates new form frmMenu
      */
     public frmMenu() {
-        this.config = new frmConfig();
+        
+       
         Trabalho2.inic.inicializador();
         initComponents();
     }
@@ -75,12 +77,15 @@ public class frmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
+        this.mapa = new frmMapa();
+        mapa.setVisible(true);
             
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
         // TODO add your handling code here:
+        this.config = new frmConfig();
         config.setVisible(true);
         btnIniciar.setEnabled(true);
     }//GEN-LAST:event_btnConfigActionPerformed

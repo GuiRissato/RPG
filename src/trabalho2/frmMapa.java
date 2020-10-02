@@ -5,17 +5,30 @@
  */
 package trabalho2;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Guilherme Rissato
  */
 public class frmMapa extends javax.swing.JFrame {
-
+DefaultListModel listMochila = new DefaultListModel();
+DefaultListModel listCinto = new DefaultListModel() ;
     /**
      * Creates new form frmMapa
      */
     public frmMapa() {
         initComponents();
+        lblNivel.setText(Trabalho2.inic.nivelFrm);
+        lblNomeHeroi.setText(Trabalho2.inic.vetHeroi.get(0).nome);
+        lblVida.setText(String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
+        lstMochila.setModel(listMochila);
+        listMochila.addElement(Trabalho2.inic.vetPocoes.get(0).nome);
+        listMochila.addElement(Trabalho2.inic.vetPocoes.get(2).nome);
+        lstCinto.setModel(listCinto);  
+        listCinto.addElement(Trabalho2.inic.vetArmas.get(1).nome);
+        listCinto.addElement(Trabalho2.inic.vetArmas.get(2).nome);
+        setDefaultCloseOperation(frmMenu.DISPOSE_ON_CLOSE);
         
     }
 
@@ -30,11 +43,11 @@ public class frmMapa extends javax.swing.JFrame {
 
         lblNivel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listMochila = new javax.swing.JList<>();
+        lstMochila = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         lblNomeHeroi = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listCinto = new javax.swing.JList<>();
+        lstCinto = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         lblTipoNivel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -44,22 +57,29 @@ public class frmMapa extends javax.swing.JFrame {
         lblArma = new javax.swing.JLabel();
         lblInfo = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        listInfo = new javax.swing.JList<>();
+        lstInfo = new javax.swing.JList<>();
         jButton4 = new javax.swing.JButton();
         lblItems = new javax.swing.JLabel();
+        btnTerminarNivel = new javax.swing.JButton();
+        btnAtacar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblNivel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblNivel.setText("Nivel");
 
-        jScrollPane1.setViewportView(listMochila);
+        jScrollPane1.setViewportView(lstMochila);
 
         jLabel2.setText("Mochila:");
 
         lblNomeHeroi.setText("Nome Heroi");
 
-        jScrollPane2.setViewportView(listCinto);
+        lstCinto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstCintoMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(lstCinto);
 
         jLabel1.setText("Cinto:");
 
@@ -84,42 +104,60 @@ public class frmMapa extends javax.swing.JFrame {
         lblInfo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblInfo.setText("Informarcao do nivel");
 
-        jScrollPane3.setViewportView(listInfo);
+        jScrollPane3.setViewportView(lstInfo);
 
         jButton4.setText("Adicionar a mochila");
 
         lblItems.setText("inimigo/Items");
+
+        btnTerminarNivel.setText("Terminar Nivel");
+
+        btnAtacar.setText("Atacar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblArma)
-                    .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel2)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))
-                    .addComponent(lblNomeHeroi)
-                    .addComponent(lblVida))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblTipoNivel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblItems, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblItems, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblArma)
+                                .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))
+                                .addComponent(lblNomeHeroi)
+                                .addComponent(lblVida))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(163, 163, 163)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTipoNivel)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(180, 180, 180)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnTerminarNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(80, 80, 80))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,9 +168,11 @@ public class frmMapa extends javax.swing.JFrame {
                         .addComponent(lblTipoNivel)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTerminarNivel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblItems, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblInfo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,7 +186,9 @@ public class frmMapa extends javax.swing.JFrame {
                         .addComponent(lblVida)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblArma)
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAtacar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -167,6 +209,11 @@ public class frmMapa extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void lstCintoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstCintoMouseClicked
+        // TODO add your handling code here:
+        lblArma.setText(lstCinto.getSelectedValue());
+    }//GEN-LAST:event_lstCintoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -202,6 +249,8 @@ public class frmMapa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtacar;
+    private javax.swing.JButton btnTerminarNivel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -218,8 +267,8 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel lblNomeHeroi;
     private javax.swing.JLabel lblTipoNivel;
     private javax.swing.JLabel lblVida;
-    private javax.swing.JList<String> listCinto;
-    private javax.swing.JList<String> listInfo;
-    private javax.swing.JList<String> listMochila;
+    private javax.swing.JList<String> lstCinto;
+    private javax.swing.JList<String> lstInfo;
+    private javax.swing.JList<String> lstMochila;
     // End of variables declaration//GEN-END:variables
 }

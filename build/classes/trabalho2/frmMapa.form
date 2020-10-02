@@ -23,37 +23,60 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace pref="16" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblArma" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblNivel" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="0" pref="128" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
-                          <Component id="jButton3" pref="128" max="32767" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblItems" min="-2" pref="188" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="lblNomeHeroi" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblVida" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="lblArma" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNivel" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButton2" alignment="0" pref="128" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jButton3" pref="128" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="lblNomeHeroi" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblVida" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnAtacar" min="-2" pref="113" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jScrollPane3" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
+                                  <Component id="lblInfo" alignment="1" min="-2" pref="188" max="-2" attributes="0"/>
+                                  <Component id="jButton4" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
+                                  <Component id="lblTipoNivel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnTerminarNivel" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                                  <Component id="jButton1" min="-2" pref="118" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="82" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
-                  <Component id="lblInfo" alignment="1" min="-2" pref="188" max="-2" attributes="0"/>
-                  <Component id="jButton4" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTipoNivel" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblItems" alignment="1" min="-2" pref="188" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,9 +89,11 @@
                       <Component id="lblTipoNivel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnTerminarNivel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="lblItems" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblInfo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="97" max="-2" attributes="0"/>
@@ -83,7 +108,9 @@
                       <Component id="lblVida" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblArma" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnAtacar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -121,7 +148,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="listMochila">
+        <Component class="javax.swing.JList" name="lstMochila">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -150,12 +177,15 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="listCinto">
+        <Component class="javax.swing.JList" name="lstCinto">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstCintoMouseClicked"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -218,7 +248,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="listInfo">
+        <Component class="javax.swing.JList" name="lstInfo">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -238,6 +268,16 @@
     <Component class="javax.swing.JLabel" name="lblItems">
       <Properties>
         <Property name="text" type="java.lang.String" value="inimigo/Items"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTerminarNivel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Terminar Nivel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAtacar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Atacar"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -20,6 +20,8 @@ public class Trabalho2 {
      List<classInimigos> vetInimigo;
      List<classArmas> vetArmas ;
      List<classPocoes> vetPocoes;
+     String vetInfoI[];
+     String vetInfoE[];
      static Trabalho2 inic = new Trabalho2();
      int cintoHeroi[];
      int codInimigo = 0;
@@ -27,6 +29,11 @@ public class Trabalho2 {
      int codArmas = 0;
      int nivel = 0;
      int tamMapa = 0;
+     public String inimigoItem;
+     public int codArmaMao;
+     public String nivelFrm;
+     public String tipoNivel;
+     
      
      
      
@@ -47,7 +54,7 @@ public class Trabalho2 {
     this.vetInimigo = new ArrayList<>();
     this.vetArmas = new ArrayList<>();
     this.vetPocoes = new ArrayList<>();
-    this.cintoHeroi = new int[4];
+    this.cintoHeroi = new int[5];
     setPocao("elixir vitae", 1.3, 2);
     setPocao("forca",1.2,3);
     setPocao("defesa",0.8,1);
@@ -127,27 +134,33 @@ public class Trabalho2 {
                  break;
          }
     }
-   public String[] faseInimigo(){
+   public void faseInimigo(){
       int i =  numAleatorioIntevalo(4,0);
-      String vetInfo[] = new String[3]; 
-      vetInfo[0] = vetInimigo.get(i).nome;
-      vetInfo[1] = String.valueOf(vetInimigo.get(i).vida);
-      vetInfo[2] = String.valueOf(vetInimigo.get(i).ataque);
-      return vetInfo;
+      vetInfoI = new String[3]; 
+      vetInfoI[0] = vetInimigo.get(i).nome;
+      vetInfoI[1] = String.valueOf(vetInimigo.get(i).vida);
+      vetInfoI[2] = String.valueOf(vetInimigo.get(i).ataque);
+      inimigoItem = vetInfoI[0];
+      tipoNivel = "Inimigo";
+      nivelFrm = "Nivel: " + nivel  ;
+      
    }
    public void faseVazio(){
       
    }
-   public String[] faseElemento(){
+   
+   public void faseElemento(){
       int i = numAleatorioIntevalo(3,0);
-      String vetInfo[] = new String[6];
-      vetInfo[0] = vetArmas.get(i).nome;
-      vetInfo[1] = String.valueOf(vetArmas.get(i).ataque);
-      vetInfo[2] = String.valueOf(vetArmas.get(i).peso);
+      vetInfoE = new String[6];
+      vetInfoE[0] = vetArmas.get(i).nome;
+      vetInfoE[1] = String.valueOf(vetArmas.get(i).ataque);
+      vetInfoE[2] = String.valueOf(vetArmas.get(i).peso);
       i = numAleatorioIntevalo(2,0);
-      vetInfo[3] = vetPocoes.get(i).nome;
-      vetInfo[4] = String.valueOf(vetPocoes.get(i).cura);
-      vetInfo[5] = String.valueOf(vetPocoes.get(i).peso);
-      return vetInfo;     
+      vetInfoE[3] = vetPocoes.get(i).nome;
+      vetInfoE[4] = String.valueOf(vetPocoes.get(i).cura);
+      vetInfoE[5] = String.valueOf(vetPocoes.get(i).peso);
+     inimigoItem = vetInfoE[0] + " e " + vetInfoE[3];
+     tipoNivel = "Elementos";    
+      
    }
 }
