@@ -14,20 +14,47 @@ import javax.swing.DefaultListModel;
 public class frmMapa extends javax.swing.JFrame {
 DefaultListModel listMochila = new DefaultListModel();
 DefaultListModel listCinto = new DefaultListModel() ;
+DefaultListModel listInfo = new DefaultListModel();
     /**
      * Creates new form frmMapa
      */
     public frmMapa() {
         initComponents();
+        Trabalho2.inic.mapa();
         lblNivel.setText(Trabalho2.inic.nivelFrm);
         lblNomeHeroi.setText(Trabalho2.inic.vetHeroi.get(0).nome);
         lblVida.setText(String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
         lstMochila.setModel(listMochila);
         listMochila.addElement(Trabalho2.inic.vetPocoes.get(0).nome);
         listMochila.addElement(Trabalho2.inic.vetPocoes.get(2).nome);
-        lstCinto.setModel(listCinto);  
-        listCinto.addElement(Trabalho2.inic.vetArmas.get(1).nome);
-        listCinto.addElement(Trabalho2.inic.vetArmas.get(2).nome);
+        lblArma.setText(Trabalho2.inic.vetArmas.get(1).nome);
+        lblTipoNivel.setText(Trabalho2.inic.tipoNivel);
+        
+ 
+        if(null != lblTipoNivel.getText())
+        switch (lblTipoNivel.getText()) {
+            case "Nivel Inimigo":
+                lstInfo.setModel(listInfo);
+                listInfo.addElement("Nome do Inimigo: " + Trabalho2.inic.vetInfoI[0]);
+                listInfo.addElement("Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
+                listInfo.addElement("Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
+                lblItems.setText(Trabalho2.inic.inimigoItem);
+                break;
+            case "Nivel Vazio":
+                lstInfo.setModel(listInfo);
+                listInfo.addElement("Nesse nível você pode arrumar sua mochila e seus items");
+                break;
+            case "Nivel Elementos":
+                lstInfo.setModel(listInfo);
+                listInfo.addElement("Arma: " + Trabalho2.inic.vetInfoE[0]);
+                listInfo.addElement("   Ataque: " + Trabalho2.inic.vetInfoE[1]);
+                listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[2]);
+                listInfo.addElement("Poção: " + Trabalho2.inic.vetInfoE[3]);
+                listInfo.addElement("   Capacidade de cura: " + Trabalho2.inic.vetInfoE[4]);
+                listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[5]);
+                lblItems.setText(Trabalho2.inic.inimigoItem);
+                break;
+    }
         setDefaultCloseOperation(frmMenu.DISPOSE_ON_CLOSE);
         
     }

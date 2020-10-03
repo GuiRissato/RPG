@@ -29,6 +29,8 @@ public class Trabalho2 {
      int codArmas = 0;
      int nivel = 0;
      int tamMapa = 0;
+     int nivelI = 1;
+     int mapaJ = 1;
      public String inimigoItem;
      public int codArmaMao;
      public String nivelFrm;
@@ -56,7 +58,7 @@ public class Trabalho2 {
     this.vetPocoes = new ArrayList<>();
     this.cintoHeroi = new int[5];
     setPocao("elixir vitae", 1.3, 2);
-    setPocao("forca",1.2,3);
+    setPocao("força",1.2,3);
     setPocao("defesa",0.8,1);
     setArma("espada longa",17,3);
     setArma("adaga",13,1);
@@ -110,10 +112,13 @@ public class Trabalho2 {
     }
     
     public void mapa(){
-        for(int i = 0; i < nivel;i++){
-          int tipo =  numAleatorioIntevalo(3,1);
-          fases(tipo);
-        }
+      int g = numAleatorioIntevalo(3,1);
+      nivelFrm = "Nivel: " + nivelI + " - " + mapaJ; 
+      fases(g);
+      mapaJ++;
+      if(mapaJ == 5){
+          nivelI++;
+      }
     }
     public void nivel(int i){
       nivel = i;
@@ -125,12 +130,15 @@ public class Trabalho2 {
          switch (i) {
              case 1:
                  faseInimigo();
+                 tipoNivel = "Nivel Inimigo" ;
                  break;
              case 2:
                  faseVazio();
+                 tipoNivel = "Nivel Vazio";
                  break;
              case 3:
                  faseElemento();
+                 tipoNivel = "Nivel Elementos";
                  break;
          }
     }
@@ -141,8 +149,8 @@ public class Trabalho2 {
       vetInfoI[1] = String.valueOf(vetInimigo.get(i).vida);
       vetInfoI[2] = String.valueOf(vetInimigo.get(i).ataque);
       inimigoItem = vetInfoI[0];
-      tipoNivel = "Inimigo";
-      nivelFrm = "Nivel: " + nivel  ;
+      
+      
       
    }
    public void faseVazio(){
@@ -160,7 +168,7 @@ public class Trabalho2 {
       vetInfoE[4] = String.valueOf(vetPocoes.get(i).cura);
       vetInfoE[5] = String.valueOf(vetPocoes.get(i).peso);
      inimigoItem = vetInfoE[0] + " e " + vetInfoE[3];
-     tipoNivel = "Elementos";    
+         
       
    }
 }
