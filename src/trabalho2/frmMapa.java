@@ -23,7 +23,7 @@ DefaultListModel listInfo = new DefaultListModel();
         Trabalho2.inic.mapa();
         lblNivel.setText(Trabalho2.inic.nivelFrm);
         lblNomeHeroi.setText(Trabalho2.inic.vetHeroi.get(0).nome);
-        lblVida.setText(String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
+        lblVida.setText("Vida: " + String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
         lstMochila.setModel(listMochila);
         
 //      push na mochila dos items iniciais
@@ -33,8 +33,9 @@ DefaultListModel listInfo = new DefaultListModel();
         for(int i = 0; i<Trabalho2.inic.mochila.size();i++){
             listMochila.addElement(Trabalho2.inic.mochila.get(i));
         }
-//      coloca na mao a arma inicial
-        lblArma.setText(Trabalho2.inic.vetArmas.get(1).nome + " - Dano: " + Trabalho2.inic.vetArmas.get(1).ataque);
+//      coloca na mao a arma inicial(adaga)
+        lblArma.setText(Trabalho2.inic.vetArmas.get(1).nome);
+        lblDano.setText("- Dano: " + Trabalho2.inic.vetArmas.get(1).ataque);
  
         lblTipoNivel.setText(Trabalho2.inic.tipoNivel);
         
@@ -107,6 +108,7 @@ DefaultListModel listInfo = new DefaultListModel();
         lblItems = new javax.swing.JLabel();
         btnTerminarNivel = new javax.swing.JButton();
         btnAtacar = new javax.swing.JButton();
+        lblDano = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,6 +173,13 @@ DefaultListModel listInfo = new DefaultListModel();
 
         btnAtacar.setText("Atacar");
         btnAtacar.setEnabled(false);
+        btnAtacar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtacarActionPerformed(evt);
+            }
+        });
+
+        lblDano.setText("Dano");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,7 +189,10 @@ DefaultListModel listInfo = new DefaultListModel();
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblArma)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblArma)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblDano))
                         .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -240,7 +252,9 @@ DefaultListModel listInfo = new DefaultListModel();
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblVida)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblArma)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblArma)
+                            .addComponent(lblDano))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAtacar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,8 +303,8 @@ DefaultListModel listInfo = new DefaultListModel();
             case "Nivel Inimigo":
                 lstInfo.setModel(listInfo);
                 listInfo.addElement("Nome do Inimigo: " + Trabalho2.inic.vetInfoI[0]);
-                listInfo.addElement("Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
-                listInfo.addElement("Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
+                listInfo.addElement("   Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
+                listInfo.addElement("   Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
                 lblItems.setText(Trabalho2.inic.inimigoItem);
                 btnAtacar.setEnabled(true);
                 btnTerminarNivel.setEnabled(true);
@@ -329,6 +343,41 @@ DefaultListModel listInfo = new DefaultListModel();
         btnAddCinto.setEnabled(false);
         
     }//GEN-LAST:event_btnTerminarNivelActionPerformed
+
+    private void btnAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtacarActionPerformed
+        // TODO add your handling code here:
+        
+        for(int i = 0; i <Trabalho2.inic.vetArmas.size();i++ ){
+            if(Double.valueOf(Trabalho2.inic.vetInfoI[1]) <= 0){
+                btnAtacar.setEnabled(false);
+                listInfo.removeAllElements();
+                Trabalho2.inic.vetInfoI[1] = "0";
+                lstInfo.setModel(listInfo);
+                listInfo.addElement("Nome do Inimigo: " + Trabalho2.inic.vetInfoI[0]);
+                listInfo.addElement("   Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
+                listInfo.addElement("   Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
+            }
+        if(lblArma.getText().equals(Trabalho2.inic.vetArmas.get(i).nome)){
+            
+//          atualizando a vida do inimigo
+            Double vida = Double.valueOf(Trabalho2.inic.vetInfoI[1]);
+            vida = vida - Trabalho2.inic.vetArmas.get(i).ataque;
+            Trabalho2.inic.vetInfoI[1] = String.valueOf(vida);
+             listInfo.removeAllElements();
+                lstInfo.setModel(listInfo);
+                listInfo.addElement("Nome do Inimigo: " + Trabalho2.inic.vetInfoI[0]);
+                listInfo.addElement("   Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
+                listInfo.addElement("   Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
+//            atualizando a vida do heroi
+            Double vidaHeroi;
+            vidaHeroi = Trabalho2.inic.vetHeroi.get(0).vida;
+             vidaHeroi = vidaHeroi - Double.valueOf(Trabalho2.inic.vetInfoI[2]);
+            Trabalho2.inic.vetHeroi.get(0).vida = vidaHeroi;
+            lblVida.setText("Vida: " + Trabalho2.inic.vetHeroi.get(0).vida);
+                
+        }
+        }
+    }//GEN-LAST:event_btnAtacarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,6 +424,7 @@ DefaultListModel listInfo = new DefaultListModel();
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblArma;
+    private javax.swing.JLabel lblDano;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblItems;
     private javax.swing.JLabel lblNivel;
