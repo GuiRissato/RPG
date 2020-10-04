@@ -47,11 +47,18 @@ DefaultListModel listInfo = new DefaultListModel();
                 listInfo.addElement("Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
                 listInfo.addElement("Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
                 lblItems.setText(Trabalho2.inic.inimigoItem);
+                btnAtacar.setEnabled(true);
+                btnTerminarNivel.setEnabled(true);
+                
+                
                 break;
             case "Nivel Vazio":
                 lstInfo.setModel(listInfo);
                 lblItems.setText("");
                 listInfo.addElement("Nesse nível você pode arrumar sua mochila e seus items");
+                btnAddMochila.setEnabled(true);
+                btnAddCinto.setEnabled(true);
+                btnTerminarNivel.setEnabled(true);
                 break;
             case "Nivel Elementos":
                 lstInfo.setModel(listInfo);
@@ -62,6 +69,9 @@ DefaultListModel listInfo = new DefaultListModel();
                 listInfo.addElement("   Capacidade de cura: " + Trabalho2.inic.vetInfoE[4]);
                 listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[5]);
                 lblItems.setText(Trabalho2.inic.inimigoItem);
+                btnAddMochila.setEnabled(true);
+                btnAddCinto.setEnabled(true);
+                btnTerminarNivel.setEnabled(true);
                 break;
     }
         setDefaultCloseOperation(frmMenu.DISPOSE_ON_CLOSE);
@@ -87,14 +97,13 @@ DefaultListModel listInfo = new DefaultListModel();
         jLabel1 = new javax.swing.JLabel();
         lblTipoNivel = new javax.swing.JLabel();
         btnProximoNivel = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAddMochila = new javax.swing.JButton();
+        btnAddCinto = new javax.swing.JButton();
         lblVida = new javax.swing.JLabel();
         lblArma = new javax.swing.JLabel();
         lblInfo = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         lstInfo = new javax.swing.JList<>();
-        jButton4 = new javax.swing.JButton();
         lblItems = new javax.swing.JLabel();
         btnTerminarNivel = new javax.swing.JButton();
         btnAtacar = new javax.swing.JButton();
@@ -123,20 +132,23 @@ DefaultListModel listInfo = new DefaultListModel();
         lblTipoNivel.setText("Tipo Do Nivel");
 
         btnProximoNivel.setText("Proximo Nivel");
+        btnProximoNivel.setEnabled(false);
         btnProximoNivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProximoNivelActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Arrumar mochila");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAddMochila.setText("Adicionar na mochila");
+        btnAddMochila.setEnabled(false);
+        btnAddMochila.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAddMochilaActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Arrumar cinto");
+        btnAddCinto.setText("Adicionar no cinto");
+        btnAddCinto.setEnabled(false);
 
         lblVida.setText("Vida");
 
@@ -147,20 +159,25 @@ DefaultListModel listInfo = new DefaultListModel();
 
         jScrollPane3.setViewportView(lstInfo);
 
-        jButton4.setText("Adicionar a mochila");
-
         lblItems.setText("inimigo/Items");
 
         btnTerminarNivel.setText("Terminar Nivel");
+        btnTerminarNivel.setEnabled(false);
+        btnTerminarNivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerminarNivelActionPerformed(evt);
+            }
+        });
 
         btnAtacar.setText("Atacar");
+        btnAtacar.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblItems, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,12 +191,12 @@ DefaultListModel listInfo = new DefaultListModel();
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel2)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
+                                        .addComponent(btnAddMochila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel1)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))
+                                        .addComponent(btnAddCinto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addComponent(lblNomeHeroi)
                                 .addComponent(lblVida))
                             .addGroup(layout.createSequentialGroup()
@@ -191,7 +208,6 @@ DefaultListModel listInfo = new DefaultListModel();
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblTipoNivel)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(180, 180, 180)
@@ -217,8 +233,7 @@ DefaultListModel listInfo = new DefaultListModel();
                         .addComponent(lblInfo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
+                        .addGap(38, 38, 38))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
@@ -239,17 +254,17 @@ DefaultListModel listInfo = new DefaultListModel();
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2))))
+                            .addComponent(btnAddCinto)
+                            .addComponent(btnAddMochila))))
                 .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAddMochilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMochilaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAddMochilaActionPerformed
 
     private void lstCintoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstCintoMouseClicked
         // TODO add your handling code here:
@@ -278,11 +293,16 @@ DefaultListModel listInfo = new DefaultListModel();
                 listInfo.addElement("Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
                 listInfo.addElement("Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
                 lblItems.setText(Trabalho2.inic.inimigoItem);
+                btnAtacar.setEnabled(true);
+                btnTerminarNivel.setEnabled(true);
                 break;
             case "Nivel Vazio":
                 lstInfo.setModel(listInfo);
                 lblItems.setText("");
                 listInfo.addElement("Nesse nível você pode arrumar sua mochila e seus items");
+                btnAddMochila.setEnabled(true);
+                btnAddCinto.setEnabled(true);
+                btnTerminarNivel.setEnabled(true);
                 break;
             case "Nivel Elementos":
                 lstInfo.setModel(listInfo);
@@ -293,9 +313,23 @@ DefaultListModel listInfo = new DefaultListModel();
                 listInfo.addElement("   Capacidade de cura: " + Trabalho2.inic.vetInfoE[4]);
                 listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[5]);
                 lblItems.setText(Trabalho2.inic.inimigoItem);
+                btnAddMochila.setEnabled(true);
+                btnAddCinto.setEnabled(true);
+                btnTerminarNivel.setEnabled(true);
                 break;
     }
+         btnProximoNivel.setEnabled(false);
     }//GEN-LAST:event_btnProximoNivelActionPerformed
+
+    private void btnTerminarNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarNivelActionPerformed
+        // TODO add your handling code here:
+        btnProximoNivel.setEnabled(true);
+        btnAtacar.setEnabled(false);
+        btnTerminarNivel.setEnabled(false);
+        btnAddMochila.setEnabled(false);
+        btnAddCinto.setEnabled(false);
+        
+    }//GEN-LAST:event_btnTerminarNivelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,12 +365,11 @@ DefaultListModel listInfo = new DefaultListModel();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddCinto;
+    private javax.swing.JButton btnAddMochila;
     private javax.swing.JButton btnAtacar;
     private javax.swing.JButton btnProximoNivel;
     private javax.swing.JButton btnTerminarNivel;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
