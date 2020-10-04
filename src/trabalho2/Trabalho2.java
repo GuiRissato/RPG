@@ -84,7 +84,8 @@ public class Trabalho2 {
     public void setInimigo(String nome, Double ataque, Double multi){
         int cod = codInimigo;
         Double vida = vetHeroi.get(0).vida*multi;
-        vetInimigo.add(new classInimigos(cod,nome,ataque,vida));
+        Double forca = vetHeroi.get(0).vida*ataque;
+        vetInimigo.add(new classInimigos(cod,nome,forca,vida));
         codInimigo++;
     }
     public void setArma(String nome, int ataque, int peso){
@@ -146,7 +147,7 @@ public class Trabalho2 {
       vetInfoI[0] = vetInimigo.get(i).nome;
       vetInfoI[1] = String.valueOf(vetInimigo.get(i).vida);
       vetInfoI[2] = String.valueOf(vetInimigo.get(i).ataque);
-      inimigoItem = vetInfoI[0];
+      inimigoItem = "Inimigo: " + vetInfoI[0];
       
       
       
@@ -165,7 +166,7 @@ public class Trabalho2 {
       vetInfoE[3] = vetPocoes.get(i).nome;
       vetInfoE[4] = String.valueOf(vetPocoes.get(i).cura);
       vetInfoE[5] = String.valueOf(vetPocoes.get(i).peso);
-     inimigoItem = vetInfoE[0] + " e " + vetInfoE[3];
+     inimigoItem = "Elementos: " + vetInfoE[0] + " e " + vetInfoE[3];
          
       
    }
