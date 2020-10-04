@@ -15,7 +15,7 @@ public class Trabalho2 {
     /**
      * @param args the command line arguments
      */
-     public Stack<Integer> mochila;
+     public Stack<String> mochila;
      List<classHeroi> vetHeroi;
      List<classInimigos> vetInimigo;
      List<classArmas> vetArmas ;
@@ -66,20 +66,14 @@ public class Trabalho2 {
     setArma("clave",20,2);
     }
 //    coloca items na mochila
-    public void pushMochila(int cod){
-        mochila.push(cod);
-        
+    public void pushMochila(String nome){
+        mochila.push(nome);   
     }
 //    retira o ultimo item colocado na mochila
     public void popMochila(){
         mochila.pop();
         
     }
-    private void printStack(Stack<Integer> s){
-        if (s.isEmpty()){
-            System.out.println("nao existe elementos na mochila");
-        }
-}
     public void setHeroi(String nome, Double vida){
         vetHeroi.add(new classHeroi(nome,vida));
     }
@@ -118,6 +112,10 @@ public class Trabalho2 {
       mapaJ++;
       if(mapaJ == 5){
           nivelI++;
+          mapaJ =0;
+      }
+      if(nivelI > nivel){
+          GameOver();
       }
     }
     public void nivel(int i){
@@ -171,4 +169,8 @@ public class Trabalho2 {
          
       
    }
+
+    public void GameOver() {
+        System.out.print("Acabou!!");
+    }
 }

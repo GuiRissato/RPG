@@ -25,9 +25,17 @@ DefaultListModel listInfo = new DefaultListModel();
         lblNomeHeroi.setText(Trabalho2.inic.vetHeroi.get(0).nome);
         lblVida.setText(String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
         lstMochila.setModel(listMochila);
-        listMochila.addElement(Trabalho2.inic.vetPocoes.get(0).nome);
-        listMochila.addElement(Trabalho2.inic.vetPocoes.get(2).nome);
-        lblArma.setText(Trabalho2.inic.vetArmas.get(1).nome);
+        
+//      push na mochila dos items iniciais
+        Trabalho2.inic.pushMochila(Trabalho2.inic.vetPocoes.get(0).nome);
+        Trabalho2.inic.pushMochila(Trabalho2.inic.vetPocoes.get(2).nome);
+//      coloca na lista
+        for(int i = 0; i<Trabalho2.inic.mochila.size();i++){
+            listMochila.addElement(Trabalho2.inic.mochila.get(i));
+        }
+//      coloca na mao a arma inicial
+        lblArma.setText(Trabalho2.inic.vetArmas.get(1).nome + " - Dano: " + Trabalho2.inic.vetArmas.get(1).ataque);
+ 
         lblTipoNivel.setText(Trabalho2.inic.tipoNivel);
         
  
@@ -42,6 +50,7 @@ DefaultListModel listInfo = new DefaultListModel();
                 break;
             case "Nivel Vazio":
                 lstInfo.setModel(listInfo);
+                lblItems.setText("");
                 listInfo.addElement("Nesse nível você pode arrumar sua mochila e seus items");
                 break;
             case "Nivel Elementos":
@@ -77,7 +86,7 @@ DefaultListModel listInfo = new DefaultListModel();
         lstCinto = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         lblTipoNivel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnProximoNivel = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         lblVida = new javax.swing.JLabel();
@@ -113,7 +122,12 @@ DefaultListModel listInfo = new DefaultListModel();
         lblTipoNivel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblTipoNivel.setText("Tipo Do Nivel");
 
-        jButton1.setText("Proximo Nivel");
+        btnProximoNivel.setText("Proximo Nivel");
+        btnProximoNivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProximoNivelActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Arrumar mochila");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +197,7 @@ DefaultListModel listInfo = new DefaultListModel();
                                 .addGap(180, 180, 180)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnTerminarNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(btnProximoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(80, 80, 80))))
         );
         layout.setVerticalGroup(
@@ -194,7 +208,7 @@ DefaultListModel listInfo = new DefaultListModel();
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTipoNivel)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnProximoNivel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTerminarNivel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -242,6 +256,47 @@ DefaultListModel listInfo = new DefaultListModel();
         lblArma.setText(lstCinto.getSelectedValue());
     }//GEN-LAST:event_lstCintoMouseClicked
 
+    private void btnProximoNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoNivelActionPerformed
+        // TODO add your handling code here:
+        listInfo.removeAllElements();
+        listMochila.removeAllElements();
+        listCinto.removeAllElements();
+        Trabalho2.inic.mapa();
+        lblNivel.setText(Trabalho2.inic.nivelFrm);
+         lblVida.setText(String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
+         for(int i = 0; i<Trabalho2.inic.mochila.size();i++){
+            listMochila.addElement(Trabalho2.inic.mochila.get(i));
+        }
+         
+        lblTipoNivel.setText(Trabalho2.inic.tipoNivel);
+         
+         if(null != lblTipoNivel.getText())
+        switch (lblTipoNivel.getText()) {
+            case "Nivel Inimigo":
+                lstInfo.setModel(listInfo);
+                listInfo.addElement("Nome do Inimigo: " + Trabalho2.inic.vetInfoI[0]);
+                listInfo.addElement("Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
+                listInfo.addElement("Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
+                lblItems.setText(Trabalho2.inic.inimigoItem);
+                break;
+            case "Nivel Vazio":
+                lstInfo.setModel(listInfo);
+                lblItems.setText("");
+                listInfo.addElement("Nesse nível você pode arrumar sua mochila e seus items");
+                break;
+            case "Nivel Elementos":
+                lstInfo.setModel(listInfo);
+                listInfo.addElement("Arma: " + Trabalho2.inic.vetInfoE[0]);
+                listInfo.addElement("   Ataque: " + Trabalho2.inic.vetInfoE[1]);
+                listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[2]);
+                listInfo.addElement("Poção: " + Trabalho2.inic.vetInfoE[3]);
+                listInfo.addElement("   Capacidade de cura: " + Trabalho2.inic.vetInfoE[4]);
+                listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[5]);
+                lblItems.setText(Trabalho2.inic.inimigoItem);
+                break;
+    }
+    }//GEN-LAST:event_btnProximoNivelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -277,8 +332,8 @@ DefaultListModel listInfo = new DefaultListModel();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtacar;
+    private javax.swing.JButton btnProximoNivel;
     private javax.swing.JButton btnTerminarNivel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

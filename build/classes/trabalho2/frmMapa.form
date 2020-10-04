@@ -70,7 +70,7 @@
                               <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnTerminarNivel" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" pref="118" max="-2" attributes="0"/>
+                                  <Component id="btnProximoNivel" min="-2" pref="118" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -88,7 +88,7 @@
                   <Group type="102" attributes="0">
                       <Component id="lblTipoNivel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnProximoNivel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnTerminarNivel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -205,10 +205,13 @@
         <Property name="text" type="java.lang.String" value="Tipo Do Nivel"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnProximoNivel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Proximo Nivel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProximoNivelActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
