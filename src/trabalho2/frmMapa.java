@@ -6,6 +6,7 @@
 package trabalho2;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,10 +30,10 @@ DefaultListModel listInfo = new DefaultListModel();
 //      push na mochila dos items iniciais
         Trabalho2.inic.pushMochila(Trabalho2.inic.vetPocoes.get(0).nome);
         Trabalho2.inic.pushMochila(Trabalho2.inic.vetPocoes.get(2).nome);
-//      coloca na lista
-        for(int i = 0; i<Trabalho2.inic.mochila.size();i++){
-            listMochila.addElement(Trabalho2.inic.mochila.get(i));
-        }
+//      coloca na lista o ultimo item 
+        
+            listMochila.addElement(Trabalho2.inic.mochila.peek());
+        
 //      coloca na mao a arma inicial(adaga)
         lblArma.setText(Trabalho2.inic.vetArmas.get(1).nome);
         lblDano.setText("- Dano: " + Trabalho2.inic.vetArmas.get(1).ataque);
@@ -49,7 +50,8 @@ DefaultListModel listInfo = new DefaultListModel();
                 listInfo.addElement("Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
                 lblItems.setText(Trabalho2.inic.inimigoItem);
                 btnAtacar.setEnabled(true);
-                btnTerminarNivel.setEnabled(true);
+                btnTerminarNivel.setEnabled(false);
+               
                 
                 
                 break;
@@ -74,8 +76,9 @@ DefaultListModel listInfo = new DefaultListModel();
                 btnAddCinto.setEnabled(true);
                 btnTerminarNivel.setEnabled(true);
                 break;
-    }
-        setDefaultCloseOperation(frmMenu.DISPOSE_ON_CLOSE);
+        }
+        
+    setDefaultCloseOperation(frmMenu.DISPOSE_ON_CLOSE);
         
     }
 
@@ -277,6 +280,46 @@ DefaultListModel listInfo = new DefaultListModel();
 
     private void btnAddMochilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMochilaActionPerformed
         // TODO add your handling code here:
+        lstInfo.getSelectedValue();
+        if(Trabalho2.inic.vetInfoE[0] == null ||  Trabalho2.inic.vetInfoE[3] == null){
+            listInfo.removeAllElements();
+            btnAddMochila.setEnabled(false);
+        
+        }else if(lstInfo.getSelectedValue().equals("Arma: " + Trabalho2.inic.vetInfoE[0])){
+           Trabalho2.inic.pushMochila(Trabalho2.inic.vetInfoE[0]);
+           for(int i = 0 ; i<=2;i++){
+           Trabalho2.inic.vetInfoE[i] = null;
+           }
+           listMochila.removeAllElements();
+           listMochila.addElement(Trabalho2.inic.mochila.peek());
+           listInfo.removeAllElements();
+           if(Trabalho2.inic.vetInfoE[0] == null){
+            listInfo.addElement("Poção: " + Trabalho2.inic.vetInfoE[3]);
+                listInfo.addElement("   Capacidade de cura: " + Trabalho2.inic.vetInfoE[4]);
+                listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[5]);
+           }
+           
+                     
+       }else if(lstInfo.getSelectedValue().equals("Poção: " + Trabalho2.inic.vetInfoE[3])){
+           Trabalho2.inic.pushMochila(Trabalho2.inic.vetInfoE[3]);
+           for(int j = 3 ; j<=5;j++){
+           Trabalho2.inic.vetInfoE[j] = null;
+           }
+           listMochila.removeAllElements();
+           listMochila.addElement(Trabalho2.inic.mochila.peek());
+           listInfo.removeAllElements();
+           if(Trabalho2.inic.vetInfoE[3] == null){
+           listInfo.addElement("Arma: " + Trabalho2.inic.vetInfoE[0]);
+                listInfo.addElement("   Ataque: " + Trabalho2.inic.vetInfoE[1]);
+                listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[2]);
+           }
+           
+       
+       }else if(lstInfo.getSelectedValue() != "Poção: " + Trabalho2.inic.vetInfoE[3] && lstInfo.getSelectedValue() != "Arma: " + Trabalho2.inic.vetInfoE[0] ){
+           JOptionPane.showMessageDialog(null, "Você só pode colocar o item na mochila ou no cinto se clicar no nome dele antes");
+      
+       }
+        
     }//GEN-LAST:event_btnAddMochilaActionPerformed
 
     private void lstCintoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstCintoMouseClicked
@@ -291,10 +334,10 @@ DefaultListModel listInfo = new DefaultListModel();
         listCinto.removeAllElements();
         Trabalho2.inic.mapa();
         lblNivel.setText(Trabalho2.inic.nivelFrm);
-         lblVida.setText(String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
-         for(int i = 0; i<Trabalho2.inic.mochila.size();i++){
-            listMochila.addElement(Trabalho2.inic.mochila.get(i));
-        }
+         lblVida.setText("vida: " + String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
+//        mostra o ultimo item colcado da mochila 
+            listMochila.addElement(Trabalho2.inic.mochila.peek());
+        
          
         lblTipoNivel.setText(Trabalho2.inic.tipoNivel);
          
@@ -307,7 +350,7 @@ DefaultListModel listInfo = new DefaultListModel();
                 listInfo.addElement("   Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
                 lblItems.setText(Trabalho2.inic.inimigoItem);
                 btnAtacar.setEnabled(true);
-                btnTerminarNivel.setEnabled(true);
+                btnTerminarNivel.setEnabled(false);
                 break;
             case "Nivel Vazio":
                 lstInfo.setModel(listInfo);
@@ -346,7 +389,6 @@ DefaultListModel listInfo = new DefaultListModel();
 
     private void btnAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtacarActionPerformed
         // TODO add your handling code here:
-        
         for(int i = 0; i <Trabalho2.inic.vetArmas.size();i++ ){
             if(Double.valueOf(Trabalho2.inic.vetInfoI[1]) <= 0){
                 btnAtacar.setEnabled(false);
@@ -356,6 +398,7 @@ DefaultListModel listInfo = new DefaultListModel();
                 listInfo.addElement("Nome do Inimigo: " + Trabalho2.inic.vetInfoI[0]);
                 listInfo.addElement("   Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
                 listInfo.addElement("   Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
+                btnTerminarNivel.setEnabled(true);
             }
         if(lblArma.getText().equals(Trabalho2.inic.vetArmas.get(i).nome)){
             

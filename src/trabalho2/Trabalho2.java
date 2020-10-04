@@ -31,6 +31,7 @@ public class Trabalho2 {
      int tamMapa = 0;
      int nivelI = 1;
      int mapaJ = 1;
+     Double vidaInicial;
      public String inimigoItem;
      public int codArmaMao;
      public String nivelFrm;
@@ -76,6 +77,7 @@ public class Trabalho2 {
     }
     public void setHeroi(String nome, Double vida){
         vetHeroi.add(new classHeroi(nome,vida));
+        vidaInicial = vida;
     }
     public void setCinto(int objeto,int posicao){
         cintoHeroi[posicao] = objeto;
