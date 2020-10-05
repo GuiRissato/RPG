@@ -12,10 +12,10 @@ package trabalho2;
 public class classArmas {
     int cod;
     String nome;
-    int ataque;
+    Double ataque;
     int peso;
     
-    public classArmas(int cod, String nome, int ataque, int peso){
+    public classArmas(int cod, String nome, Double ataque, int peso){
         this.cod = cod;
         this.nome = nome;
         this.ataque = ataque;

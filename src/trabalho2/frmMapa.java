@@ -16,6 +16,7 @@ public class frmMapa extends javax.swing.JFrame {
 DefaultListModel listMochila = new DefaultListModel();
 DefaultListModel listCinto = new DefaultListModel() ;
 DefaultListModel listInfo = new DefaultListModel();
+int peso = 0;
     /**
      * Creates new form frmMapa
      */
@@ -78,6 +79,7 @@ DefaultListModel listInfo = new DefaultListModel();
                 break;
         }
         
+        
     setDefaultCloseOperation(frmMenu.DISPOSE_ON_CLOSE);
         
     }
@@ -112,12 +114,18 @@ DefaultListModel listInfo = new DefaultListModel();
         btnTerminarNivel = new javax.swing.JButton();
         btnAtacar = new javax.swing.JButton();
         lblDano = new javax.swing.JLabel();
+        btnUsarMochila = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblNivel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblNivel.setText("Nivel");
 
+        lstMochila.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstMochilaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstMochila);
 
         jLabel2.setText("Mochila:");
@@ -154,6 +162,11 @@ DefaultListModel listInfo = new DefaultListModel();
 
         btnAddCinto.setText("Adicionar no cinto");
         btnAddCinto.setEnabled(false);
+        btnAddCinto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCintoActionPerformed(evt);
+            }
+        });
 
         lblVida.setText("Vida");
 
@@ -184,12 +197,19 @@ DefaultListModel listInfo = new DefaultListModel();
 
         lblDano.setText("Dano");
 
+        btnUsarMochila.setText("Usar item da mochila");
+        btnUsarMochila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsarMochilaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -197,38 +217,46 @@ DefaultListModel listInfo = new DefaultListModel();
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(lblDano))
                         .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNomeHeroi)
+                        .addComponent(lblVida)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addComponent(btnAddMochila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 120, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(btnAddMochila, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(btnUsarMochila)))
+                                    .addGap(11, 11, 11)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel1)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(btnAddCinto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(lblNomeHeroi)
-                        .addComponent(lblVida))
+                                .addComponent(btnAddCinto, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(163, 163, 163)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(100, 100, 100)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblTipoNivel)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(180, 180, 180)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnTerminarNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnProximoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(lblItems, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTipoNivel)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(180, 180, 180)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnTerminarNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnProximoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(110, 110, 110))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblItems, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +271,7 @@ DefaultListModel listInfo = new DefaultListModel();
                         .addComponent(btnTerminarNivel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblItems, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addComponent(lblInfo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,7 +300,7 @@ DefaultListModel listInfo = new DefaultListModel();
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAddCinto)
                             .addComponent(btnAddMochila))))
-                .addGap(38, 38, 38))
+                .addComponent(btnUsarMochila, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -280,51 +308,70 @@ DefaultListModel listInfo = new DefaultListModel();
 
     private void btnAddMochilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMochilaActionPerformed
         // TODO add your handling code here:
-        lstInfo.getSelectedValue();
-        if(Trabalho2.inic.vetInfoE[0] == null ||  Trabalho2.inic.vetInfoE[3] == null){
-            listInfo.removeAllElements();
-            btnAddMochila.setEnabled(false);
         
-        }else if(lstInfo.getSelectedValue().equals("Arma: " + Trabalho2.inic.vetInfoE[0])){
+         if(lstInfo.getSelectedValue().equals("Arma: " + Trabalho2.inic.vetInfoE[0])){
            Trabalho2.inic.pushMochila(Trabalho2.inic.vetInfoE[0]);
            for(int i = 0 ; i<=2;i++){
-           Trabalho2.inic.vetInfoE[i] = null;
+           Trabalho2.inic.vetInfoE[i] = "0";
            }
            listMochila.removeAllElements();
-           listMochila.addElement(Trabalho2.inic.mochila.peek());
            listInfo.removeAllElements();
-           if(Trabalho2.inic.vetInfoE[0] == null){
+           if("0".equals(Trabalho2.inic.vetInfoE[0])){
             listInfo.addElement("Poção: " + Trabalho2.inic.vetInfoE[3]);
                 listInfo.addElement("   Capacidade de cura: " + Trabalho2.inic.vetInfoE[4]);
                 listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[5]);
            }
+           if("0".equals(Trabalho2.inic.vetInfoE[0]) &&  "0".equals(Trabalho2.inic.vetInfoE[3])){
+            listInfo.removeAllElements();
+            btnAddMochila.setEnabled(false);
+            for(int g = 0;g<Trabalho2.inic.vetInfoE.length;g++){
+                Trabalho2.inic.vetInfoE[g] = null;
+            }
+        
+        }
            
                      
        }else if(lstInfo.getSelectedValue().equals("Poção: " + Trabalho2.inic.vetInfoE[3])){
            Trabalho2.inic.pushMochila(Trabalho2.inic.vetInfoE[3]);
            for(int j = 3 ; j<=5;j++){
-           Trabalho2.inic.vetInfoE[j] = null;
+           Trabalho2.inic.vetInfoE[j] = "0";
            }
            listMochila.removeAllElements();
-           listMochila.addElement(Trabalho2.inic.mochila.peek());
            listInfo.removeAllElements();
-           if(Trabalho2.inic.vetInfoE[3] == null){
+           if("0".equals(Trabalho2.inic.vetInfoE[3])){
            listInfo.addElement("Arma: " + Trabalho2.inic.vetInfoE[0]);
                 listInfo.addElement("   Ataque: " + Trabalho2.inic.vetInfoE[1]);
                 listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[2]);
            }
+           if("0".equals(Trabalho2.inic.vetInfoE[0]) &&  Trabalho2.inic.vetInfoE[3] == "0"){
+            listInfo.removeAllElements();
+            btnAddMochila.setEnabled(false);
+            for(int g = 0;g<Trabalho2.inic.vetInfoE.length;g++){
+                Trabalho2.inic.vetInfoE[g] = null;
+            }
+        
+        }
            
        
        }else if(lstInfo.getSelectedValue() != "Poção: " + Trabalho2.inic.vetInfoE[3] && lstInfo.getSelectedValue() != "Arma: " + Trabalho2.inic.vetInfoE[0] ){
            JOptionPane.showMessageDialog(null, "Você só pode colocar o item na mochila ou no cinto se clicar no nome dele antes");
       
        }
+        listMochila.removeAllElements();
+         listMochila.addElement(Trabalho2.inic.mochila.peek());
         
     }//GEN-LAST:event_btnAddMochilaActionPerformed
 
     private void lstCintoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstCintoMouseClicked
         // TODO add your handling code here:
+        
         lblArma.setText(lstCinto.getSelectedValue());
+        
+        String[] options = {"Mochila","Mão"};
+        int x = JOptionPane.showOptionDialog(null, "Onde deseja colocar o item?",
+                "Escolha uma opção",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        System.out.println(x);
     }//GEN-LAST:event_lstCintoMouseClicked
 
     private void btnProximoNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoNivelActionPerformed
@@ -336,8 +383,11 @@ DefaultListModel listInfo = new DefaultListModel();
         lblNivel.setText(Trabalho2.inic.nivelFrm);
          lblVida.setText("vida: " + String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
 //        mostra o ultimo item colcado da mochila 
+        if(Trabalho2.inic.mochila.isEmpty()){
+            
+        }else{
             listMochila.addElement(Trabalho2.inic.mochila.peek());
-        
+        }
          
         lblTipoNivel.setText(Trabalho2.inic.tipoNivel);
          
@@ -399,8 +449,8 @@ DefaultListModel listInfo = new DefaultListModel();
                 listInfo.addElement("   Vida do Inimigo: " + Trabalho2.inic.vetInfoI[1]);
                 listInfo.addElement("   Força do Inimigo: " + Trabalho2.inic.vetInfoI[2]);
                 btnTerminarNivel.setEnabled(true);
-            }
-        if(lblArma.getText().equals(Trabalho2.inic.vetArmas.get(i).nome)){
+                }
+            if(lblArma.getText().equals(Trabalho2.inic.vetArmas.get(i).nome)){
             
 //          atualizando a vida do inimigo
             Double vida = Double.valueOf(Trabalho2.inic.vetInfoI[1]);
@@ -418,9 +468,72 @@ DefaultListModel listInfo = new DefaultListModel();
             Trabalho2.inic.vetHeroi.get(0).vida = vidaHeroi;
             lblVida.setText("Vida: " + Trabalho2.inic.vetHeroi.get(0).vida);
                 
-        }
+            }
         }
     }//GEN-LAST:event_btnAtacarActionPerformed
+
+    private void btnAddCintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCintoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnAddCintoActionPerformed
+
+    private void lstMochilaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstMochilaMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_lstMochilaMouseClicked
+
+    private void btnUsarMochilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsarMochilaActionPerformed
+        // TODO add your handling code here:
+       String elemento = lstMochila.getSelectedValue();
+       
+       if(elemento.isEmpty()){
+           JOptionPane.showMessageDialog(null, "A mochila esta vazia!!");
+       }else{
+           for(int i = 0; i < Trabalho2.inic.vetPocoes.size() ; i++){
+               if(elemento.equals(Trabalho2.inic.vetPocoes.get(i).nome)){
+                   Trabalho2.inic.usarPocao(elemento,lblArma.getText());
+                        Trabalho2.inic.popMochila();
+                        listMochila.removeAllElements();
+                   if(Trabalho2.inic.mochila.isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Você esvaziou a mochila!!");
+                            btnUsarMochila.setEnabled(false);
+                   }else{
+                        listMochila.addElement(Trabalho2.inic.mochila.peek());
+                   }
+               }
+           
+           }
+           
+       
+       }
+       
+       for(int i = 0; i < Trabalho2.inic.vetArmas.size() ; i++){
+           if(elemento.equals(Trabalho2.inic.vetArmas.get(i).nome)){
+               if(listCinto.isEmpty()){
+                   listCinto.addElement(elemento);
+               }else{
+                   for(int j = 0; i < listCinto.getSize(); j++){
+                       for(int g = 0; g < Trabalho2.inic.vetArmas.size();g++){
+                           if(listCinto.getElementAt(j) == Trabalho2.inic.vetArmas.get(g).nome){
+                                peso = peso + Trabalho2.inic.vetArmas.get(g).peso;
+                                if(peso > 7){
+                                    JOptionPane.showMessageDialog(null, "O cinto ja esta muito pesado para usar!!");
+                                }else{
+                                    listCinto.addElement(elemento);
+                                }
+                           }
+                       }
+                   }
+                   
+               }
+           }
+       
+       }
+       lblVida.setText("Vida: "+ Trabalho2.inic.vetHeroi.get(0).vida); 
+       
+       
+     
+    }//GEN-LAST:event_btnUsarMochilaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -461,6 +574,7 @@ DefaultListModel listInfo = new DefaultListModel();
     private javax.swing.JButton btnAtacar;
     private javax.swing.JButton btnProximoNivel;
     private javax.swing.JButton btnTerminarNivel;
+    private javax.swing.JButton btnUsarMochila;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

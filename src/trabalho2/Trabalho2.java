@@ -13,7 +13,6 @@ import java.util.*;
 public class Trabalho2 {
 
     /**
-     * @param args the command line arguments
      */
      public Stack<String> mochila;
      List<classHeroi> vetHeroi;
@@ -61,10 +60,10 @@ public class Trabalho2 {
     setPocao("elixir vitae", 1.3, 2);
     setPocao("força",1.2,3);
     setPocao("defesa",0.8,1);
-    setArma("espada longa",17,3);
-    setArma("adaga",13,1);
-    setArma("besta",14,2);
-    setArma("clave",20,2);
+    setArma("espada longa",17.0,3);
+    setArma("adaga",13.0,1);
+    setArma("besta",14.0,2);
+    setArma("clave",20.0,2);
     }
 //    coloca items na mochila
     public void pushMochila(String nome){
@@ -90,7 +89,7 @@ public class Trabalho2 {
         vetInimigo.add(new classInimigos(cod,nome,forca,vida));
         codInimigo++;
     }
-    public void setArma(String nome, int ataque, int peso){
+    public void setArma(String nome, Double ataque, int peso){
          int cod = codArmas;
         vetArmas.add(new classArmas(cod,nome,ataque,peso));
         codArmas++;
@@ -171,6 +170,30 @@ public class Trabalho2 {
      inimigoItem = "Elementos: " + vetInfoE[0] + " e " + vetInfoE[3];
          
       
+   }
+   
+   public void usarPocao(String nome, String armaMao){
+  
+//    setPocao("elixir vitae", 1.3, 2);
+//    setPocao("força",1.2,3);
+//    setPocao("defesa",0.8,1);
+
+           if(nome.equals(vetPocoes.get(0).nome)){
+               Double vida =  vetHeroi.get(0).vida;
+               vida = vida*(vetPocoes.get(0).cura);
+               vetHeroi.get(0).vida = vida;
+           }else if(nome.equals(vetPocoes.get(1).nome)){
+               for(int i = 0; i< vetArmas.size();i++){
+                   if(armaMao.equals(vetArmas.get(i).nome)){
+                      Double dano = vetArmas.get(i).ataque*vetPocoes.get(1).cura;
+                      vetArmas.get(i).ataque = dano;
+                   }
+               }
+           }else if(nome.equals(vetPocoes.get(2).nome)){
+               Double vida = vetHeroi.get(0).vida + 20;
+               vetHeroi.get(0).vida = vida;
+           }
+       
    }
 
     public void GameOver() {
