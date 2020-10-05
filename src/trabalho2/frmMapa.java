@@ -16,7 +16,6 @@ public class frmMapa extends javax.swing.JFrame {
 DefaultListModel listMochila = new DefaultListModel();
 DefaultListModel listCinto = new DefaultListModel() ;
 DefaultListModel listInfo = new DefaultListModel();
-int peso = 0;
     /**
      * Creates new form frmMapa
      */
@@ -27,6 +26,7 @@ int peso = 0;
         lblNomeHeroi.setText(Trabalho2.inic.vetHeroi.get(0).nome);
         lblVida.setText("Vida: " + String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
         lstMochila.setModel(listMochila);
+        lstCinto.setModel(listCinto);
         
 //      push na mochila dos items iniciais
         Trabalho2.inic.pushMochila(Trabalho2.inic.vetPocoes.get(0).nome);
@@ -114,7 +114,6 @@ int peso = 0;
         btnTerminarNivel = new javax.swing.JButton();
         btnAtacar = new javax.swing.JButton();
         lblDano = new javax.swing.JLabel();
-        btnUsarMochila = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -197,13 +196,6 @@ int peso = 0;
 
         lblDano.setText("Dano");
 
-        btnUsarMochila.setText("Usar item da mochila");
-        btnUsarMochila.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsarMochilaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,10 +219,7 @@ int peso = 0;
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addComponent(btnAddMochila, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(0, 0, Short.MAX_VALUE)
-                                            .addComponent(btnUsarMochila)))
+                                        .addComponent(btnAddMochila, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGap(11, 11, 11)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel1)
@@ -254,9 +243,7 @@ int peso = 0;
                                     .addComponent(btnTerminarNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnProximoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(110, 110, 110))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblItems, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))))
+                    .addComponent(lblItems, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +287,7 @@ int peso = 0;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAddCinto)
                             .addComponent(btnAddMochila))))
-                .addComponent(btnUsarMochila, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -308,8 +295,8 @@ int peso = 0;
 
     private void btnAddMochilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMochilaActionPerformed
         // TODO add your handling code here:
-        
-         if(lstInfo.getSelectedValue().equals("Arma: " + Trabalho2.inic.vetInfoE[0])){
+        if(lstInfo.isSelectionEmpty()){
+        }else if(lstInfo.getSelectedValue().equals("Arma: " + Trabalho2.inic.vetInfoE[0])){
            Trabalho2.inic.pushMochila(Trabalho2.inic.vetInfoE[0]);
            for(int i = 0 ; i<=2;i++){
            Trabalho2.inic.vetInfoE[i] = "0";
@@ -323,7 +310,6 @@ int peso = 0;
            }
            if("0".equals(Trabalho2.inic.vetInfoE[0]) &&  "0".equals(Trabalho2.inic.vetInfoE[3])){
             listInfo.removeAllElements();
-            btnAddMochila.setEnabled(false);
             for(int g = 0;g<Trabalho2.inic.vetInfoE.length;g++){
                 Trabalho2.inic.vetInfoE[g] = null;
             }
@@ -365,13 +351,65 @@ int peso = 0;
     private void lstCintoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstCintoMouseClicked
         // TODO add your handling code here:
         
-        lblArma.setText(lstCinto.getSelectedValue());
+        if(lstCinto.isSelectionEmpty()){
         
-        String[] options = {"Mochila","Mão"};
+        }else{
+        
+        String[] options = {"Mochila","Mão","Remover"};
         int x = JOptionPane.showOptionDialog(null, "Onde deseja colocar o item?",
                 "Escolha uma opção",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-        System.out.println(x);
+//        0 -> mochila, 1 -> mao
+
+        if(x == 0){
+            listMochila.removeAllElements();
+            Trabalho2.inic.pushMochila(lstCinto.getSelectedValue());
+            Trabalho2.inic.cintoHeroi.remove(lstCinto.getSelectedValue());
+            listCinto.removeAllElements();
+            for(int j = 0 ; j < Trabalho2.inic.cintoHeroi.size() ; j++){
+            listCinto.addElement(Trabalho2.inic.cintoHeroi.get(j));
+           }
+            listMochila.addElement(Trabalho2.inic.mochila.peek());
+            
+        }else if(x == 1){
+            if(lstCinto.isSelectionEmpty()){
+            
+            }else{
+            for(int j = 0;j < Trabalho2.inic.vetArmas.size();j++){
+                if(lstCinto.getSelectedValue() == Trabalho2.inic.vetArmas.get(j).nome ){
+                    lblArma.setText(lstCinto.getSelectedValue());
+                    Trabalho2.inic.cintoHeroi.remove(lstCinto.getSelectedValue());
+                     listCinto.removeAllElements();
+                        for(int k = 0 ; k < Trabalho2.inic.cintoHeroi.size() ; k++){
+                             listCinto.addElement(Trabalho2.inic.cintoHeroi.get(k));
+                        }
+                    Double dano = null;
+                        for(int i = 0; i < Trabalho2.inic.vetArmas.size();i++){
+                            if(Trabalho2.inic.vetArmas.get(i).nome.equals(lblArma.getText())){
+                                dano = Trabalho2.inic.vetArmas.get(i).ataque;
+                            }
+                        }
+                lblDano.setText("- Dano: " + dano);
+           
+                }
+            }
+            for(int l = 0; l< Trabalho2.inic.vetPocoes.size();l++){
+                if(lstCinto.getSelectedValue() == Trabalho2.inic.vetPocoes.get(l).nome ){
+                    JOptionPane.showMessageDialog(null, "Não é possível colocar poções na mão!!");
+                
+                }
+            
+            }
+        }
+            }else if(x==2){
+                Trabalho2.inic.cintoHeroi.remove(lstCinto.getSelectedValue());
+                listCinto.removeAllElements();
+                        for(int k = 0 ; k < Trabalho2.inic.cintoHeroi.size() ; k++){
+                             listCinto.addElement(Trabalho2.inic.cintoHeroi.get(k));
+                        }
+            }
+        
+        }
     }//GEN-LAST:event_lstCintoMouseClicked
 
     private void btnProximoNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoNivelActionPerformed
@@ -380,6 +418,7 @@ int peso = 0;
         listMochila.removeAllElements();
         listCinto.removeAllElements();
         Trabalho2.inic.mapa();
+        Trabalho2.inic.GameOver();
         lblNivel.setText(Trabalho2.inic.nivelFrm);
          lblVida.setText("vida: " + String.valueOf(Trabalho2.inic.vetHeroi.get(0).vida));
 //        mostra o ultimo item colcado da mochila 
@@ -387,6 +426,11 @@ int peso = 0;
             
         }else{
             listMochila.addElement(Trabalho2.inic.mochila.peek());
+        }
+        if(Trabalho2.inic.cintoHeroi.size() > 0){
+            for(int i = 0; i < Trabalho2.inic.cintoHeroi.size();i++){
+                listCinto.addElement(Trabalho2.inic.cintoHeroi.get(i));
+            }
         }
          
         lblTipoNivel.setText(Trabalho2.inic.tipoNivel);
@@ -439,6 +483,8 @@ int peso = 0;
 
     private void btnAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtacarActionPerformed
         // TODO add your handling code here:
+        Trabalho2.inic.GameOver();
+        
         for(int i = 0; i <Trabalho2.inic.vetArmas.size();i++ ){
             if(Double.valueOf(Trabalho2.inic.vetInfoI[1]) <= 0){
                 btnAtacar.setEnabled(false);
@@ -474,66 +520,159 @@ int peso = 0;
 
     private void btnAddCintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCintoActionPerformed
         // TODO add your handling code here:
+        Trabalho2.inic.pesoCinto();
+        Trabalho2.inic.capacidadeCinto();
+        if(lstInfo.isSelectionEmpty()){
+            
+        }else if(lstInfo.getSelectedValue().equals("Arma: " + Trabalho2.inic.vetInfoE[0])){
+           Trabalho2.inic.setCinto(Trabalho2.inic.vetInfoE[0]);
+           for(int i = 0 ; i<=2;i++){
+           Trabalho2.inic.vetInfoE[i] = "0";
+           }
+
+           listInfo.removeAllElements();
+           if("0".equals(Trabalho2.inic.vetInfoE[0])){
+            listInfo.addElement("Poção: " + Trabalho2.inic.vetInfoE[3]);
+                listInfo.addElement("   Capacidade de cura: " + Trabalho2.inic.vetInfoE[4]);
+                listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[5]);
+           }
+           if("0".equals(Trabalho2.inic.vetInfoE[0]) &&  "0".equals(Trabalho2.inic.vetInfoE[3])){
+            listInfo.removeAllElements();
+            btnAddCinto.setEnabled(false);
+            btnAddMochila.setEnabled(false);
+            for(int g = 0;g<Trabalho2.inic.vetInfoE.length;g++){
+                Trabalho2.inic.vetInfoE[g] = null;
+            }
         
+        }
+           
+                     
+       }else if(lstInfo.getSelectedValue().equals("Poção: " + Trabalho2.inic.vetInfoE[3])){
+           Trabalho2.inic.setCinto(Trabalho2.inic.vetInfoE[3]);
+           for(int j = 3 ; j<=5;j++){
+           Trabalho2.inic.vetInfoE[j] = "0";
+           }
+
+           listInfo.removeAllElements();
+           if("0".equals(Trabalho2.inic.vetInfoE[3])){
+           listInfo.addElement("Arma: " + Trabalho2.inic.vetInfoE[0]);
+                listInfo.addElement("   Ataque: " + Trabalho2.inic.vetInfoE[1]);
+                listInfo.addElement("   Peso: " + Trabalho2.inic.vetInfoE[2]);
+           }
+           if("0".equals(Trabalho2.inic.vetInfoE[0]) &&  Trabalho2.inic.vetInfoE[3] == "0"){
+            listInfo.removeAllElements();
+            btnAddCinto.setEnabled(false);
+            btnAddMochila.setEnabled(false);
+            for(int g = 0;g<Trabalho2.inic.vetInfoE.length;g++){
+                Trabalho2.inic.vetInfoE[g] = null;
+            }
+        
+        }
+           
+       
+       }else if(lstInfo.getSelectedValue() != "Poção: " + Trabalho2.inic.vetInfoE[3] && lstInfo.getSelectedValue() != "Arma: " + Trabalho2.inic.vetInfoE[0] ){
+           JOptionPane.showMessageDialog(null, "Você só pode colocar o item na mochila ou no cinto se clicar no nome dele antes");
+      
+       }
+       
+
+        if(lstMochila.isSelectionEmpty()){
+        
+        }else{
+        
+           Trabalho2.inic.setCinto(lstMochila.getSelectedValue());
+           Trabalho2.inic.popMochila();
+           listMochila.removeAllElements();
+           if(Trabalho2.inic.mochila.isEmpty()){
+           
+           }else{
+           listMochila.addElement(Trabalho2.inic.mochila.peek());
+           }
+           
+        }
+         listCinto.removeAllElements();
+        for(int j = 0 ; j < Trabalho2.inic.cintoHeroi.size() ; j++){
+            listCinto.addElement(Trabalho2.inic.cintoHeroi.get(j));
+           }
     }//GEN-LAST:event_btnAddCintoActionPerformed
 
     private void lstMochilaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstMochilaMouseClicked
         // TODO add your handling code here:
+         if(lstMochila.isSelectionEmpty()){
         
-    }//GEN-LAST:event_lstMochilaMouseClicked
+        }else{
+        
+        String[] options = {"Cinto","Mão","Usar item","Remover"};
+        int x = JOptionPane.showOptionDialog(null, "Onde deseja colocar o item?",
+                "Escolha uma opção",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+//        0 -> mochila, 1 -> mao
 
-    private void btnUsarMochilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsarMochilaActionPerformed
-        // TODO add your handling code here:
-       String elemento = lstMochila.getSelectedValue();
-       
-       if(elemento.isEmpty()){
-           JOptionPane.showMessageDialog(null, "A mochila esta vazia!!");
-       }else{
-           for(int i = 0; i < Trabalho2.inic.vetPocoes.size() ; i++){
-               if(elemento.equals(Trabalho2.inic.vetPocoes.get(i).nome)){
-                   Trabalho2.inic.usarPocao(elemento,lblArma.getText());
-                        Trabalho2.inic.popMochila();
+        if(x == 0){
+            
+            Trabalho2.inic.cintoHeroi.add(lstMochila.getSelectedValue());
+            Trabalho2.inic.popMochila();
+             listMochila.removeAllElements();
+             if(Trabalho2.inic.mochila.isEmpty()){
+           
+           }else{
+           listMochila.addElement(Trabalho2.inic.mochila.peek());
+           }
+             listCinto.removeAllElements();
+                        for(int k = 0 ; k < Trabalho2.inic.cintoHeroi.size() ; k++){
+                             listCinto.addElement(Trabalho2.inic.cintoHeroi.get(k));
+                        }
+        }else if(x == 1){
+            
+            Double dano = null;
+                    for(int i = 0; i < Trabalho2.inic.vetArmas.size();i++){
+                    if(lstMochila.getSelectedValue() == Trabalho2.inic.vetArmas.get(i).nome){
+                        lblArma.setText(Trabalho2.inic.vetArmas.get(i).nome);
+                        dano = Trabalho2.inic.vetArmas.get(i).ataque; 
                         listMochila.removeAllElements();
-                   if(Trabalho2.inic.mochila.isEmpty()){
-                        JOptionPane.showMessageDialog(null, "Você esvaziou a mochila!!");
-                            btnUsarMochila.setEnabled(false);
-                   }else{
                         listMochila.addElement(Trabalho2.inic.mochila.peek());
-                   }
-               }
-           
-           }
-           
-       
-       }
-       
-       for(int i = 0; i < Trabalho2.inic.vetArmas.size() ; i++){
-           if(elemento.equals(Trabalho2.inic.vetArmas.get(i).nome)){
-               if(listCinto.isEmpty()){
-                   listCinto.addElement(elemento);
-               }else{
-                   for(int j = 0; i < listCinto.getSize(); j++){
-                       for(int g = 0; g < Trabalho2.inic.vetArmas.size();g++){
-                           if(listCinto.getElementAt(j) == Trabalho2.inic.vetArmas.get(g).nome){
-                                peso = peso + Trabalho2.inic.vetArmas.get(g).peso;
-                                if(peso > 7){
-                                    JOptionPane.showMessageDialog(null, "O cinto ja esta muito pesado para usar!!");
-                                }else{
-                                    listCinto.addElement(elemento);
-                                }
-                           }
-                       }
-                   }
-                   
-               }
-           }
-       
-       }
-       lblVida.setText("Vida: "+ Trabalho2.inic.vetHeroi.get(0).vida); 
-       
-       
-     
-    }//GEN-LAST:event_btnUsarMochilaActionPerformed
+                        lblDano.setText("- Dano: " + dano);
+                    }else{
+                        for(int l = 0; l< Trabalho2.inic.vetPocoes.size();l++){
+                            if(lstMochila.getSelectedValue() == Trabalho2.inic.vetPocoes.get(l).nome ){
+                                JOptionPane.showMessageDialog(null, "Não é possível colocar poções na mão!!");
+                            }
+                    
+                        }
+                    }
+                }       
+             
+            
+        }else if(x==2){
+             for(int i = 0; i < Trabalho2.inic.vetPocoes.size() ; i++){
+                 if(lstMochila.getSelectedValue() == Trabalho2.inic.vetPocoes.get(i).nome){
+                     Trabalho2.inic.usarPocao(Trabalho2.inic.vetPocoes.get(i).nome,lblArma.getText());
+                    Trabalho2.inic.popMochila();
+                    listMochila.removeAllElements();
+                     if(Trabalho2.inic.mochila.isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Você esvaziou a mochila!!");
+
+                    }else{
+                        listMochila.addElement(Trabalho2.inic.mochila.peek());
+                    }
+                 }
+             }
+             lblVida.setText("Vida: " + Trabalho2.inic.vetHeroi.get(0).vida);
+             
+        }else if(x == 3){
+            Trabalho2.inic.popMochila();
+            listMochila.removeAllElements();
+           if(Trabalho2.inic.mochila.isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Você esvaziou a mochila!!");
+
+                    }else{
+                        listMochila.addElement(Trabalho2.inic.mochila.peek());
+                    }
+        }
+        
+        
+        }
+    }//GEN-LAST:event_lstMochilaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -574,7 +713,6 @@ int peso = 0;
     private javax.swing.JButton btnAtacar;
     private javax.swing.JButton btnProximoNivel;
     private javax.swing.JButton btnTerminarNivel;
-    private javax.swing.JButton btnUsarMochila;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -5,6 +5,7 @@
  */
 package trabalho2;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,14 +23,15 @@ public class Trabalho2 {
      String vetInfoI[];
      String vetInfoE[];
      static Trabalho2 inic = new Trabalho2();
-     int cintoHeroi[];
+     Vector<String> cintoHeroi;
      int codInimigo = 0;
      int codPocoes = 0;
      int codArmas = 0;
      int nivel = 0;
-     int tamMapa = 0;
      int nivelI = 1;
      int mapaJ = 1;
+     int posicao = 0;
+     int pesoCinto = 0;
      Double vidaInicial;
      public String inimigoItem;
      public int codArmaMao;
@@ -56,7 +58,7 @@ public class Trabalho2 {
     this.vetInimigo = new ArrayList<>();
     this.vetArmas = new ArrayList<>();
     this.vetPocoes = new ArrayList<>();
-    this.cintoHeroi = new int[5];
+    this.cintoHeroi = new Vector<String>();
     setPocao("elixir vitae", 1.3, 2);
     setPocao("força",1.2,3);
     setPocao("defesa",0.8,1);
@@ -78,10 +80,12 @@ public class Trabalho2 {
         vetHeroi.add(new classHeroi(nome,vida));
         vidaInicial = vida;
     }
-    public void setCinto(int objeto,int posicao){
-        cintoHeroi[posicao] = objeto;
-//        fazer verificacao qnd estiver cheio
+    public void setCinto(String objeto){
+        cintoHeroi.add(objeto);
+           
     }
+          
+    
     public void setInimigo(String nome, Double ataque, Double multi){
         int cod = codInimigo;
         Double vida = vetHeroi.get(0).vida*multi;
@@ -111,18 +115,14 @@ public class Trabalho2 {
       int g = numAleatorioIntevalo(3,1);
       nivelFrm = "Nivel: " + nivelI + " - " + mapaJ; 
       fases(g);
-      mapaJ++;
       if(mapaJ == 5){
           nivelI++;
-          mapaJ =0;
+          mapaJ =1;
       }
-      if(nivelI > nivel){
-          GameOver();
-      }
+      mapaJ++;
     }
     public void nivel(int i){
       nivel = i;
-      tamMapa = 5;
       
     }
     
@@ -196,7 +196,41 @@ public class Trabalho2 {
        
    }
 
+   public void pesoCinto(){
+       int peso = 0; 
+       for(int i = 0; i < cintoHeroi.size(); i++){
+           for(int j = 0; j < vetArmas.size();j++){
+           if(cintoHeroi.get(i) == vetArmas.get(j).nome){
+               peso = peso + vetArmas.get(j).peso;
+           }
+       }
+       }
+       for(int i = 0; i < cintoHeroi.size(); i++){
+           for(int j = 0; j < vetPocoes.size();j++){
+           if(cintoHeroi.get(i) == vetPocoes.get(j).nome){
+               peso = peso + vetPocoes.get(j).peso;
+           }
+       }
+       }
+       if(peso > 7){
+            JOptionPane.showMessageDialog(null, "O cinto está muito pesado para colocar algum item!!");
+       }
+       
+   }
+   public void capacidadeCinto(){
+       if(cintoHeroi.size() >= 5){
+           JOptionPane.showMessageDialog(null, "O cinto está cheio!!");
+       }
+   }
+   
     public void GameOver() {
-        System.out.print("Acabou!!");
+        if(vetHeroi.get(0).vida <= 0){
+            JOptionPane.showMessageDialog(null, "Você morreu, o jogo acabou!!");
+            System.exit(0);
+        }else if(nivelI == nivel+1){
+            JOptionPane.showMessageDialog(null, "Você Venceu!!");
+            System.exit(0);
+        }
+        
     }
 }

@@ -45,10 +45,6 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                                       <Component id="btnAddMochila" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="btnUsarMochila" min="-2" max="-2" attributes="0"/>
-                                      </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               </Group>
@@ -86,10 +82,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblItems" min="-2" pref="243" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lblItems" alignment="1" min="-2" pref="243" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -143,7 +136,7 @@
                       </Group>
                   </Group>
               </Group>
-              <Component id="btnUsarMochila" min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -315,14 +308,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Dano"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnUsarMochila">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Usar item da mochila"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsarMochilaActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
